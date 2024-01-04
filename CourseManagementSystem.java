@@ -87,7 +87,43 @@ class TestSystem {
 
                 else if (profile == 2) {
                     System.out.println("Welcome, Student");
-                    // Student-specific functionalities here
+                    System.out.println("What would you like to do? [View Course = 1, Enroll Course = 2, Drop Course =3]");
+                    if (sc.hasNextInt()) {
+                    int option = sc.nextInt();
+                    sc.nextLine();
+                    String Proceed;
+
+                        if (option == 1){
+                        //Show courses
+                            System.out.println("These are the courses you have enrolled for each Trimester");
+                            System.out.println("Trimester I: " );
+                            System.out.println("Trimester II: ");
+                            System.out.println("Trimester III: ");
+                            Proceed = sc.nextLine();
+                        }
+                        else if (option == 2){
+                        //Course Enrollment
+                            System.out.println("Select your trimester");
+                            System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
+                            Proceed = sc.nextLine();
+                            
+                            System.out.println("Please key in course ID");
+                            String course = sc.nextLine();
+
+                            System.out.println("You have enrolled for course: " + course);
+                        }
+                        else if (option == 3){
+                        // Course Dropout
+                            System.out.println("Select your trimester");
+                            System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
+                            Proceed = sc.nextLine();
+
+                            System.out.println("Please key in course ID");
+                            String course = sc.nextLine();
+
+                            System.out.println("You have dropped out of course: " + course);
+
+                           }
                 } else if (profile == 3) {
                     System.out.println("Welcome, Teacher");
                     // Teacher-specific functionalities here
