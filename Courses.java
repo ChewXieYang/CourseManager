@@ -12,4 +12,10 @@ public class Courses {
     public int getCredit(){
         return Credit;
     }
+    public String getCode(){
+        return Code;
+    }
+    public String getPreReq(){
+        return PreReq;
+    }
 }
