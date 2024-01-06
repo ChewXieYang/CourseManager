@@ -22,6 +22,9 @@ class TestSystem {
         ArrayList<String> CourseTrimesterI = new ArrayList<>();
         ArrayList<String> CourseTrimesterII = new ArrayList<>();
         ArrayList<String> CourseTrimesterIII = new ArrayList<>();
+        ArrayList<String> StudentCoListA = new ArrayList<>();
+        ArrayList<String> StudentCoListB = new ArrayList<>();
+        ArrayList<String> LeTeachList = new ArrayList<>();
 
         int profile = 0;
         String course;
@@ -36,7 +39,9 @@ class TestSystem {
 
         StudentList.add("1211101453 Lee");
         LecturerList.add("905477 Steven");
-        CourseList.add("CS101 Toolbox Theory");
+        CourseList.add("CS101 Toolbox Theory"); // course A
+        CourseList.add("TCP2201 Programming"); // course B
+        LeTeachList.add("CS101 Toolbox Theory");
 
         System.out.println("Welcome to Course Manager");
         do {
@@ -153,23 +158,35 @@ class TestSystem {
                                         do{
                                         System.out.println("Select your trimester");
                                         System.out.println("Trimester I = 1, Trimester II = 2, Trimester III = 3");
-                                        trimester = sc.nextInt();
+                                        int trimester = sc.nextInt();
                                         sc.nextLine();
                                         System.out.println("Please key in course ID");                                         
                                             switch(trimester){
                                                 case 1:
                                                     courseID1 = sc.nextLine();
                                                     CourseTrimesterI.add(courseID1);
+                                                    if (courseID1 == "CS101") 
+                                                        StudentCoListA.add(SID);
+                                                    else
+                                                        StudentCoListB.add(SID);
                                                     System.out.println("You have enrolled for course: " + courseID1 + " in Trimester " + trimester);
                                                     break;
                                                 case 2:
                                                     courseID2 = sc.nextLine();
                                                     CourseTrimesterII.add(courseID2);
+                                                    if (courseID2 == "CS101") 
+                                                        StudentCoListA.add(SID);
+                                                    else
+                                                        StudentCoListB.add(SID);
                                                     System.out.println("You have enrolled for course: " + courseID2 + " in Trimester " + trimester);
                                                     break;
                                                 case 3:
                                                     courseID3 = sc.nextLine();
                                                     CourseTrimesterIII.add(courseID3);
+                                                    if (courseID3 == "CS101") 
+                                                        StudentCoListA.add(SID);
+                                                    else
+                                                        StudentCoListB.add(SID);
                                                     System.out.println("You have enrolled for course: " + courseID3 + " in Trimester " + trimester);
                                                     break;
                                             }
@@ -181,23 +198,35 @@ class TestSystem {
                                         do{
                                         System.out.println("Select your trimester");
                                         System.out.println("Trimester I = 1, Trimester II = 2, Trimester III = 3");
-                                        trimester = sc.nextInt();
+                                        int trimester = sc.nextInt();
                                         sc.nextLine();
                                         System.out.println("Please key in course ID");
                                         switch(trimester){
                                                 case 1:
                                                     courseID1 = sc.nextLine();
                                                     CourseTrimesterI.remove(courseID1);
+                                                    if (courseID1 == "CS101") 
+                                                        StudentCoListA.remove(SID);
+                                                    else
+                                                        StudentCoListB.remove(SID);
                                                     System.out.println("You have dropped course: " + courseID1 + " in Trimester " + trimester);
                                                     break;
                                                 case 2:
                                                     courseID2 = sc.nextLine();
                                                     CourseTrimesterII.remove(courseID2);
+                                                    if (courseID2 == "CS101") 
+                                                        StudentCoListA.remove(SID);
+                                                    else
+                                                        StudentCoListB.remove(SID);
                                                     System.out.println("You have dropped course: " + courseID2 + " in Trimester " + trimester);
                                                     break;
                                                 case 3:
                                                     courseID3 = sc.nextLine();
                                                     CourseTrimesterIII.remove(courseID3);
+                                                    if (courseID3 == "CS101") 
+                                                        StudentCoListA.remove(SID);
+                                                    else
+                                                        StudentCoListB.remove(SID);
                                                     System.out.println("You have dropped course: " + courseID3 + " in Trimester " + trimester);
                                                     break;
                                             }
@@ -235,17 +264,26 @@ class TestSystem {
                                 sc.nextLine();
 
                                 switch (option) {
-                                    case 1:
+                                    case 1: // print the course teach
                                         System.out.println("You have assigned the following class: ");
-                                        System.out.print(LID.getCourse());
+                                        for (int i = 0; i < LeTeachList.size(); i++) {
+                                            System.out.print(LeTeachList.get(i) +", ");
+                                        }
                                         break;
                                     case 2:
                                         System.out.println("Type the course you want to check: ");
-                                        checkCourse = sc.nextLine();
+                                        String checkCourse = sc.nextLine();
                                         sc.nextLine();
                                         System.out.println("The students in course: ");
-                                        for (int i = 0; i < CourseList.size(); i++) {
-                                            System.out.println( (i+1) +".  " + CourseList.getStudent(i));
+                                        if (checkCourse == "CS101") {  // decide course
+                                            for (int i = 0; i < StudentCoListA.size(); i++) {
+                                            System.out.println( (i+1) +".  " + StudentCoListA.get(i));
+                                            }
+                                        }
+                                        else {
+                                            for (int i = 0; i < StudentCoListB.size(); i++) {
+                                            System.out.println( (i+1) +".  " + StudentCoListB.get(i));
+                                            }
                                         }
                                         break;
                                     case 3:
