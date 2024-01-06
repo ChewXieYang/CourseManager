@@ -1,6 +1,6 @@
-//import java.util.*;
-import java.util.Scanner;
+// import java.util.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CourseManagementSystem {
     private int id;
@@ -10,31 +10,33 @@ public class CourseManagementSystem {
         this.id = id;
         this.name = name;
     }
+
 }
 
-class TestSystem2 {
+class TestSystem {
     public static void main(String[] args) {
 
         ArrayList<String> CourseList = new ArrayList<>();
         ArrayList<String> StudentList = new ArrayList<>();
         ArrayList<String> LecturerList = new ArrayList<>();
-        
-        System.out.println("Welcome to Course Manager");
-        Scanner sc = new Scanner(System.in);
 
         int profile = 0;
         String course;
         int option;
         String student;
         String lecturer;
-
         boolean exitProgram = false;
+        Scanner sc = new Scanner(System.in);
 
+        StudentList.add("1211101453 Lee");
+        LecturerList.add("905477 Steven");
+
+        System.out.println("Welcome to Course Manager");
         do {
             System.out.println("Select your profile:");
             System.out.println("1. Admin");
             System.out.println("2. Student");
-            System.out.println("3. Teacher");
+            System.out.println("3. Lecturer");
             System.out.println("4. EXIT PROGRAM");
             System.out.print("Enter your choice (1/2/3/4): ");
 
@@ -43,107 +45,161 @@ class TestSystem2 {
                 sc.nextLine();
 
                 switch (profile) {
-                    case 1:
-                        System.out.println("Welcome, Admin");
-                        boolean exitAdminMenu = false;
-                        String confirmation;
-                        do {
+                    case 1: // ADMIN
+                        System.out.print("Please Enter Password: ");
+                        String password = sc.nextLine();
+                        if (password.equals("12345")) {
+                            System.out.println("Welcome, Admin");
+                            boolean exitAdminMenu = false;
+                            String confirmation;
+                            do {
 
-                            System.out.println("Select OPTION");
-                            System.out.println("1.Add Courses");
-                            System.out.println("2.Add Student");
-                            System.out.println("3.Add Lecturer");
-                            System.out.println("4.Back");
-                            System.out.print("Enter your choice (1/2/3/4): ");
-                            option = sc.nextInt();
-                            sc.nextLine(); // Consume the newline
+                                System.out.println("Select OPTION");
+                                System.out.println("1.Add Courses");
+                                System.out.println("2.Add Student");
+                                System.out.println("3.Add Lecturer");
+                                System.out.println("4. Assign Courses");
+                                System.out.println("5.Logout");
+                                System.out.print("Enter your choice (1/2/3/4/5): ");
+                                option = sc.nextInt();
+                                sc.nextLine(); // Consume the newline
 
-                            switch (option) {
-                                case 1:
-                                    do {
-                                        System.out.println("Please Enter Course ID and Name ");
-                                        course = sc.nextLine();
-                                        CourseList.add(course);
-                                        System.out.println(course + " has been successfully added");
-                                        System.out.println("Do you still want to add (yes/no)");
-                                        confirmation = sc.nextLine();
-                                    } while (confirmation.equalsIgnoreCase("yes"));
-                                    break;
-                                case 2:
-                                    do {
-                                        System.out.println("Please Enter Student ID and Name ");
-                                        student = sc.nextLine();
-                                        StudentList.add(student);
-                                        System.out.println(student + " has been successfully added");
-                                        System.out.println("Do you still want to add (yes/no)");
-                                        confirmation = sc.nextLine();
-                                    } while (confirmation.equalsIgnoreCase("yes"));
-                                    break;
-                                case 3:
-                                    do {
-                                        System.out.println("Please Enter Lecturer ID and Name ");
-                                        lecturer = sc.nextLine();
-                                        LecturerList.add(lecturer);
-                                        System.out.println(lecturer + " has been successfully added");
-                                        System.out.println("Do you still want to add (yes/no)");
-                                        confirmation = sc.nextLine();
-                                    } while (confirmation.equalsIgnoreCase("yes"));
-                                    break;
-                                case 4:
-                                    exitAdminMenu = true;
-                                    break;
-                                default:
-                                    System.out.println("Invalid option, Please Select Again");
-                            }
-                        } while (!exitAdminMenu);
+                                switch (option) {
+                                    case 1:
+                                        do {
+                                            System.out.println("Please Enter Course ID and Name ");
+                                            course = sc.nextLine();
+                                            CourseList.add(course);
+                                            System.out.println(course + " has been successfully added");
+                                            System.out.println("Do you still want to add (yes/no)");
+                                            confirmation = sc.nextLine();
+                                        } while (confirmation.equalsIgnoreCase("yes"));
+                                        break;
+                                    case 2:
+                                        do {
+                                            System.out.println("Please Enter Student ID and Name ");
+                                            student = sc.nextLine();
+                                            StudentList.add(student);
+                                            System.out.println(student + " has been successfully added");
+                                            System.out.println("Do you still want to add (yes/no)");
+                                            confirmation = sc.nextLine();
+                                        } while (confirmation.equalsIgnoreCase("yes"));
+                                        break;
+                                    case 3:
+                                        do {
+                                            System.out.println("Please Enter Lecturer ID and Name ");
+                                            lecturer = sc.nextLine();
+                                            LecturerList.add(lecturer);
+                                            System.out.println(lecturer + " has been successfully added");
+                                            System.out.println("Do you still want to add (yes/no)");
+                                            confirmation = sc.nextLine();
+                                        } while (confirmation.equalsIgnoreCase("yes"));
+                                        break;
+                                    case 4:
+                                        do {
+                                            // ASSIGN COURSES TO LECTURER
+                                            System.out.println("Do you still want to assign (yes/no)");
+                                            confirmation = sc.nextLine();
+                                        } while (confirmation.equalsIgnoreCase("yes"));
+                                        break;
+                                    case 5:
+                                        exitAdminMenu = true;
+                                        break;
+                                    default:
+                                        System.out.println("Invalid option, Please Select Again");
+                                }
+                            } while (!exitAdminMenu);
+
+                        } else
+                            System.out.println("Password Incorrect, Access Denied");
                         break;
-                    case 2:
-                        System.out.println("Welcome, Student");
-                        boolean exitStudentMenu = false;
-                        do {
 
-                            System.out.println("Select OPTION");
-                            System.out.println("1.View Courses");
-                            System.out.println("2.Enroll Courses");
-                            System.out.println("3.Drop Courses");
-                            System.out.print("Enter your choice (1/2/3): ");
-                            option = sc.nextInt();
+                    case 2: // STUDENT
 
-                            sc.nextLine();
+                        System.out.print("Please enter you Student ID: ");
+                        String SID = sc.nextLine();
+                        boolean foundStudent = searchStudentID(StudentList, SID);
+                        if (foundStudent) {
+                            System.out.println("Welcome, Student " + SID);
+                            boolean exitStudentMenu = false;
+                            do {
 
-                            switch (option) {
-                                case 1:
+                                System.out.println("Select OPTION");
+                                System.out.println("1.View Courses");
+                                System.out.println("2.Enroll Courses");
+                                System.out.println("3.Drop Courses");
+                                System.out.println("4.Logout");
+                                System.out.print("Enter your choice (1/2/3/4): ");
+                                option = sc.nextInt();
 
-                                    System.out.println("These are the courses you have enrolled for each Trimester");
-                                    System.out.println("Trimester I: ");
-                                    System.out.println("Trimester II: ");
-                                    System.out.println("Trimester III: ");
-                                    break;
+                                sc.nextLine();
 
-                                case 2:
-                                    System.out.println("Select your trimester");
-                                    System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
-                                    System.out.println("Please key in course ID");
-                                    course = sc.nextLine();
-                                    System.out.println("You have enrolled for course: " + course);
-                                    break;
-                                case 3:
-                                    System.out.println("Select your trimester");
-                                    System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
-                                    System.out.println("Please key in course ID");
-                                    course = sc.nextLine();
-                                    System.out.println("You have dropped out of course: " + course);
-                                    break;
-                                default:
-                                    System.out.println("Invalid option");
-                            }
+                                switch (option) {
+                                    case 1:
+                                        System.out
+                                                .println("These are the courses you have enrolled for each Trimester");
+                                        System.out.println("Trimester I: ");
+                                        System.out.println("Trimester II: ");
+                                        System.out.println("Trimester III: ");
+                                        break;
 
-                            System.out.println("Do you want to go back to Admin menu? (yes/no)");
-                            confirmation = sc.nextLine();
-                            if (!confirmation.equalsIgnoreCase("yes")) {
-                                exitAdminMenu = true;
-                            }
-                        } while (!exitStudentMenu);
+                                    case 2:
+                                        System.out.println("Select your trimester");
+                                        System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
+                                        System.out.println("Please key in course ID");
+                                        course = sc.nextLine();
+                                        System.out.println("You have enrolled for course: " + course);
+                                        break;
+                                    case 3:
+                                        System.out.println("Select your trimester");
+                                        System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
+                                        System.out.println("Please key in course ID");
+                                        course = sc.nextLine();
+                                        System.out.println("You have dropped out of course: " + course);
+                                        break;
+                                    case 4:
+                                        exitStudentMenu = true;
+                                        break;
+                                    default:
+                                        System.out.println("Invalid option");
+                                }
+                            } while (!exitStudentMenu);
+                        } else
+                            System.out.println("ID not found, You are not registered as a student");
+                        break;
+                    case 3: // LECTURER
+                        System.out.print("Please enter you Lecturer ID: ");
+                        String LID = sc.nextLine();
+                        boolean foundLecturer = searchLecturerID(LecturerList, LID);
+                        if (foundLecturer) {
+                            System.out.println("Welcome Lecturer " + LID);
+                            boolean exitLecturerMenu = false;
+                            do {
+
+                                System.out.println("Select OPTION");
+                                System.out.println("1.View Courses Assigned");
+                                System.out.println("2.View Students in Courses");
+                                System.out.println("3.Logout");
+                                System.out.print("Enter your choice (1/2/3/): ");
+                                option = sc.nextInt();
+
+                                sc.nextLine();
+
+                                switch (option) {
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        exitLecturerMenu = true;
+                                        break;
+                                    default:
+                                        System.out.println("Invalid option");
+                                }
+
+                            } while (!exitLecturerMenu);
+                        } else
+                            System.out.println("ID not found, You are not registered as a lecturer");
                         break;
                     case 4:
                         exitProgram = true;
@@ -153,13 +209,30 @@ class TestSystem2 {
                         break;
 
                 }
-            }
-            else
-            {
+            } else {
                 System.out.println("Please enter an integer");
-                sc.nextLine(); // Consume the invalid input 
+                sc.nextLine(); // Consume the invalid input
             }
         } while (!exitProgram);
-        
+
     }
+
+    // Method to identify Student
+    public static boolean searchStudentID(ArrayList<String> StudentList, String SID) {
+        for (String StudentID : StudentList) {
+            if (StudentID.contains(SID))
+                return true;
+        }
+        return false;
+    }
+
+    // Method to identify Lecturer
+    public static boolean searchLecturerID(ArrayList<String> LecturerList, String LID) {
+        for (String LecturerID : LecturerList) {
+            if (LecturerID.contains(LID))
+                return true;
+        }
+        return false;
+    }
+
 }
