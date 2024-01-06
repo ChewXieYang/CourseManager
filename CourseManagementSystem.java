@@ -19,17 +19,24 @@ class TestSystem {
         ArrayList<String> CourseList = new ArrayList<>();
         ArrayList<String> StudentList = new ArrayList<>();
         ArrayList<String> LecturerList = new ArrayList<>();
+        ArrayList<String> CourseTrimesterI = new ArrayList<>();
+        ArrayList<String> CourseTrimesterII = new ArrayList<>();
+        ArrayList<String> CourseTrimesterIII = new ArrayList<>();
 
         int profile = 0;
         String course;
         int option;
         String student;
         String lecturer;
+        String courseID1;
+        String courseID2;
+        String courseID3;
         boolean exitProgram = false;
         Scanner sc = new Scanner(System.in);
 
         StudentList.add("1211101453 Lee");
         LecturerList.add("905477 Steven");
+        CourseList.add("CS101 Toolbox Theory");
 
         System.out.println("Welcome to Course Manager");
         do {
