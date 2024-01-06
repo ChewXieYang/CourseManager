@@ -58,7 +58,7 @@ class TestSystem {
                                 System.out.println("1.Add Courses");
                                 System.out.println("2.Add Student");
                                 System.out.println("3.Add Lecturer");
-                                System.out.println("4. Assign Courses");
+                                System.out.println("4.Assign Courses");
                                 System.out.println("5.Logout");
                                 System.out.print("Enter your choice (1/2/3/4/5): ");
                                 option = sc.nextInt();
@@ -166,33 +166,70 @@ class TestSystem {
                                     System.out.println("Trimester II: ");
                                     System.out.println("Trimester III: ");
                                     break;
+                                switch (option) {
+                                    case 1://VIEW ENROLLED COURSES
+                                        System.out.println("These are the courses you have enrolled for each Trimester");
+                                        System.out.println("Trimester I: " + CourseTrimesterI);
+                                        System.out.println("Trimester II: "+ CourseTrimesterII);
+                                        System.out.println("Trimester III: "+ CourseTrimesterIII);
+                                        break;
 
-                                case 2:
-                                    do{
-                                    System.out.println("Select your trimester");
-                                    System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
-                                    trimester = sc.nextInt();
-                                    sc.nextLine();
-                                    System.out.println("Please key in course ID");
-                                    course = sc.nextLine();
-                                    System.out.println("You have enrolled for course: " + course);
-                                    System.out.println("Would you like to enroll more courses? (yes/no)");
-                                    confirmation = sc.nextLine();
-                                    }while (confirmation.equalsIgnoreCase("yes"));
-                                    break;
-                                case 3:
-                                    do{
-                                    System.out.println("Select your trimester");
-                                    System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
-                                    trimester = sc.nextInt();
-                                    sc.nextLine();
-                                    System.out.println("Please key in course ID");
-                                    course = sc.nextLine();
-                                    System.out.println("You have dropped out of course: " + course);
-                                    System.out.println("Would you like to drop more courses? (yes/no)");
-                                    confirmation = sc.nextLine();
-                                    }while (confirmation.equalsIgnoreCase("yes"));
-                                    break;
+                                    case 2://ENROLL COURSE
+                                        do{
+                                        System.out.println("Select your trimester");
+                                        System.out.println("Trimester I = 1, Trimester II = 2, Trimester III = 3");
+                                        trimester = sc.nextInt();
+                                        sc.nextLine();
+                                        System.out.println("Please key in course ID");                                         
+                                            switch(trimester){
+                                                case 1:
+                                                    courseID1 = sc.nextLine();
+                                                    CourseTrimesterI.add(courseID1);
+                                                    System.out.println("You have enrolled for course: " + courseID1 + " in Trimester " + trimester);
+                                                    break;
+                                                case 2:
+                                                    courseID2 = sc.nextLine();
+                                                    CourseTrimesterII.add(courseID2);
+                                                    System.out.println("You have enrolled for course: " + courseID2 + " in Trimester " + trimester);
+                                                    break;
+                                                case 3:
+                                                    courseID3 = sc.nextLine();
+                                                    CourseTrimesterIII.add(courseID3);
+                                                    System.out.println("You have enrolled for course: " + courseID3 + " in Trimester " + trimester);
+                                                    break;
+                                            }
+                                        System.out.println("Would you like to enroll more courses? (yes/no)");
+                                        confirmation = sc.nextLine();
+                                        }while (confirmation.equalsIgnoreCase("yes"));
+                                        break;
+                                    case 3://DROPOUT COURSE
+                                        do{
+                                        System.out.println("Select your trimester");
+                                        System.out.println("Trimester I = 1, Trimester II = 2, Trimester III = 3");
+                                        trimester = sc.nextInt();
+                                        sc.nextLine();
+                                        System.out.println("Please key in course ID");
+                                        switch(trimester){
+                                                case 1:
+                                                    courseID1 = sc.nextLine();
+                                                    CourseTrimesterI.remove(courseID1);
+                                                    System.out.println("You have dropped course: " + courseID1 + " in Trimester " + trimester);
+                                                    break;
+                                                case 2:
+                                                    courseID2 = sc.nextLine();
+                                                    CourseTrimesterII.remove(courseID2);
+                                                    System.out.println("You have dropped course: " + courseID2 + " in Trimester " + trimester);
+                                                    break;
+                                                case 3:
+                                                    courseID3 = sc.nextLine();
+                                                    CourseTrimesterIII.remove(courseID3);
+                                                    System.out.println("You have dropped course: " + courseID3 + " in Trimester " + trimester);
+                                                    break;
+                                            }
+                                        System.out.println("Would you like to drop more courses? (yes/no)");
+                                        confirmation = sc.nextLine();
+                                        }while (confirmation.equalsIgnoreCase("yes"));
+                                        break;
                                 case 4:
                                     exitStudentMenu = true;
                                     break;
