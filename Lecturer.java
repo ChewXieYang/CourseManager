@@ -2,33 +2,29 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Lecturer {
-
+    private String IDLecture;
     private String name;
     private Set<String> IDCourse = new TreeSet<>();
 
-    public Lecturer(String name) {
+    public Lecturer(String ID, String name) {
+        this.IDLecture = ID;
         this.name = name;
     }
-    public Set<String> addCourse(String courseToAdd) {
-        IDCourse.add(courseToAdd);
+    public String getID () {
+        return IDLecture;
+    }
+    public String getName () {
+        return name;
+    }
+    public Set<String> getCourse () {
         return IDCourse;
     }
-    public String toString() {
-        return "Name = " + name + " , Course = " + IDCourse;
+
+    void addCourse(String courseToAdd) {
+        IDCourse.add(courseToAdd);
+    }
+    public String printLecture() {
+        return "ID = " + IDLecture + "Name = " + name + " , Course = " + IDCourse;
     }
     
-
-}
-
-class TestLecturer {
-    public static void main(String[] args) {
-        Lecturer a = new Lecturer("Lee");
-        Lecturer b = new Lecturer("Wong");
-        a.addCourse("TMA2201");
-        a.addCourse("TCP2201");
-        b.addCourse("TTC2001");
-        b.addCourse("TCD2010");
-        System.out.println(a.toString());
-        System.out.println(b.toString());
-    }
 }
