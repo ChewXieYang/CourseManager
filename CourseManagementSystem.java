@@ -232,6 +232,10 @@ class TestSystem {
                                         System.out.println("You have assigned the following class: ");
                                         break;
                                     case 2:
+                                        System.out.println("Type the course you want to check: ");
+                                        checkCourse = sc.nextLine();
+                                        sc.nextLine();
+                                        System.out.println("The students in course: ");
                                         break;
                                     case 3:
                                         exitLecturerMenu = true;
