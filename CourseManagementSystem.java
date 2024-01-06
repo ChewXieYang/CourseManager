@@ -143,25 +143,61 @@ class TestSystem {
                                         System.out.println("Trimester III: ");
                                         break;
 
-                                    case 2:
-                                        System.out.println("Select your trimester");
-                                        System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
-                                        System.out.println("Please key in course ID");
-                                        course = sc.nextLine();
-                                        System.out.println("You have enrolled for course: " + course);
-                                        break;
-                                    case 3:
-                                        System.out.println("Select your trimester");
-                                        System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
-                                        System.out.println("Please key in course ID");
-                                        course = sc.nextLine();
-                                        System.out.println("You have dropped out of course: " + course);
-                                        break;
-                                    case 4:
-                                        exitStudentMenu = true;
-                                        break;
-                                    default:
-                                        System.out.println("Invalid option");
+                    case 2:
+                        System.out.println("Welcome, Student");
+                        boolean exitStudentMenu = false;
+                        do {
+                            int trimester;
+                            System.out.println("Select OPTION");
+                            System.out.println("1.View Courses");
+                            System.out.println("2.Enroll Courses");
+                            System.out.println("3.Drop Courses");
+                            System.out.println("4.Back");
+                            System.out.print("Enter your choice (1/2/3/4): ");
+                            option = sc.nextInt();
+
+                            sc.nextLine();
+
+                            switch (option) {
+                                case 1:
+
+                                    System.out.println("These are the courses you have enrolled for each Trimester");
+                                    System.out.println("Trimester I: ");
+                                    System.out.println("Trimester II: ");
+                                    System.out.println("Trimester III: ");
+                                    break;
+
+                                case 2:
+                                    do{
+                                    System.out.println("Select your trimester");
+                                    System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
+                                    trimester = sc.nextInt();
+                                    sc.nextLine();
+                                    System.out.println("Please key in course ID");
+                                    course = sc.nextLine();
+                                    System.out.println("You have enrolled for course: " + course);
+                                    System.out.println("Would you like to enroll more courses? (yes/no)");
+                                    confirmation = sc.nextLine();
+                                    }while (confirmation.equalsIgnoreCase("yes"));
+                                    break;
+                                case 3:
+                                    do{
+                                    System.out.println("Select your trimester");
+                                    System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
+                                    trimester = sc.nextInt();
+                                    sc.nextLine();
+                                    System.out.println("Please key in course ID");
+                                    course = sc.nextLine();
+                                    System.out.println("You have dropped out of course: " + course);
+                                    System.out.println("Would you like to drop more courses? (yes/no)");
+                                    confirmation = sc.nextLine();
+                                    }while (confirmation.equalsIgnoreCase("yes"));
+                                    break;
+                                case 4:
+                                    exitStudentMenu = true;
+                                    break;
+                                default:
+                                    System.out.println("Invalid option");
                                 }
                             } while (!exitStudentMenu);
                         } else
