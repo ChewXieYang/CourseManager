@@ -119,9 +119,11 @@ class TestSystem {
                         System.out.print("Please enter you Student ID: ");
                         String SID = sc.nextLine();
                         boolean foundStudent = searchStudentID(StudentList, SID);
+                        
                         if (foundStudent) {
                             System.out.println("Welcome, Student " + SID);
                             boolean exitStudentMenu = false;
+                            String confirmation;
                             do {
 
                                 System.out.println("Select OPTION");
@@ -131,41 +133,7 @@ class TestSystem {
                                 System.out.println("4.Logout");
                                 System.out.print("Enter your choice (1/2/3/4): ");
                                 option = sc.nextInt();
-
                                 sc.nextLine();
-
-                                switch (option) {
-                                    case 1:
-                                        System.out
-                                                .println("These are the courses you have enrolled for each Trimester");
-                                        System.out.println("Trimester I: ");
-                                        System.out.println("Trimester II: ");
-                                        System.out.println("Trimester III: ");
-                                        break;
-
-                    case 2:
-                        System.out.println("Welcome, Student");
-                        boolean exitStudentMenu = false;
-                        do {
-                            int trimester;
-                            System.out.println("Select OPTION");
-                            System.out.println("1.View Courses");
-                            System.out.println("2.Enroll Courses");
-                            System.out.println("3.Drop Courses");
-                            System.out.println("4.Back");
-                            System.out.print("Enter your choice (1/2/3/4): ");
-                            option = sc.nextInt();
-
-                            sc.nextLine();
-
-                            switch (option) {
-                                case 1:
-
-                                    System.out.println("These are the courses you have enrolled for each Trimester");
-                                    System.out.println("Trimester I: ");
-                                    System.out.println("Trimester II: ");
-                                    System.out.println("Trimester III: ");
-                                    break;
                                 switch (option) {
                                     case 1://VIEW ENROLLED COURSES
                                         System.out.println("These are the courses you have enrolled for each Trimester");
@@ -230,16 +198,17 @@ class TestSystem {
                                         confirmation = sc.nextLine();
                                         }while (confirmation.equalsIgnoreCase("yes"));
                                         break;
-                                case 4:
-                                    exitStudentMenu = true;
-                                    break;
-                                default:
-                                    System.out.println("Invalid option");
-                                }
-                            } while (!exitStudentMenu);
-                        } else
+                                    case 4:
+                                        exitStudentMenu = true;
+                                        break;
+                                    default:
+                                        System.out.println("Invalid option");
+                                    }
+                                } while (!exitStudentMenu);
+                            } else
                             System.out.println("ID not found, You are not registered as a student");
                         break;
+
                     case 3: // LECTURER
                         System.out.print("Please enter you Lecturer ID: ");
                         String LID = sc.nextLine();
