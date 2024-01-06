@@ -1,17 +1,22 @@
 public class Student {
-    private int ID;
     private String Name;
+    private String IDStudent;
     
-    public Student(int ID, String Name){
-        this.ID = ID;
+    public Student(String ID, String Name){
+        this.IDStudent = ID;
         this.Name = Name;
     }
 
-    public int getID(){
-        return ID;
+    public String getID(){
+        return IDStudent;
     }
 
     public String toString(){
-        return ID + " " + Name;
+        return Name;
     }
+
+    public String printStudent(){
+        return "ID = " + IDStudent + ", Name = " + Name;
+    }
+
 }
