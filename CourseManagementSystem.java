@@ -260,6 +260,7 @@ class TestSystem {
 
                                 switch (option) {
                                     case 1:
+                                        System.out.println("You have assigned the following class: ");
                                         break;
                                     case 2:
                                         break;
