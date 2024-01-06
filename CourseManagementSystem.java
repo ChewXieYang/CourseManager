@@ -230,12 +230,16 @@ class TestSystem {
                                 switch (option) {
                                     case 1:
                                         System.out.println("You have assigned the following class: ");
+                                        System.out.print(LID.getCourse());
                                         break;
                                     case 2:
                                         System.out.println("Type the course you want to check: ");
                                         checkCourse = sc.nextLine();
                                         sc.nextLine();
                                         System.out.println("The students in course: ");
+                                        for (int i = 0; i < CourseList.size(); i++) {
+                                            System.out.println( (i+1) +".  " + CourseList.getStudent(i));
+                                        }
                                         break;
                                     case 3:
                                         exitLecturerMenu = true;
