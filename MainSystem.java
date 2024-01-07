@@ -3,7 +3,7 @@
 // -Admin can create courses and assign courses to lecturers. 
 // -Users can login and the system can recognize their user type.
 // -Students can self-register for courses in new trimesters. 
-// -
+// -Admin can view all the students and lecturers for courses.
 
 
 import java.util.ArrayList;
