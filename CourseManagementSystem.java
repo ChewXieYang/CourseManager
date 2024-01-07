@@ -277,21 +277,23 @@ class TestSystem {
                                         for (int i = 0; i < LeTeachList.size(); i++) {
                                             System.out.print(LeTeachList.get(i) +", ");
                                         }
+                                        System.out.println("");
                                         break;
                                     case 2:
                                         System.out.println("Type the course you want to check: ");
                                         String checkCourse = sc.nextLine();
-                                        sc.nextLine();
                                         System.out.println("The students in course: ");
-                                        if (checkCourse == "CS101") {  // decide course
+                                        if (checkCourse.equals("CS101")) {  // decide course
                                             for (int i = 0; i < StudentCoListA.size(); i++) {
                                             System.out.println( (i+1) +".  " + StudentCoListA.get(i));
                                             }
+                                            System.out.println("");
                                         }
                                         else {
                                             for (int i = 0; i < StudentCoListB.size(); i++) {
                                             System.out.println( (i+1) +".  " + StudentCoListB.get(i));
                                             }
+                                            System.out.println("");
                                         }
                                         break;
                                     case 3:
