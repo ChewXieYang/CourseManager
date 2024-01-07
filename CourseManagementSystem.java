@@ -110,6 +110,14 @@ class TestSystem {
                                     case 4:
                                         do {
                                             // ASSIGN COURSES TO LECTURER
+                                            System.out.println("Please Enter Course ID and Name ");
+                                            course = sc.nextLine();
+                                            System.out.println("Please Enter Lecturer ID and Name ");
+                                            lecturer = sc.nextLine();
+
+                                            System.out.println(course + " has successfully been assigned to " + lecturer);
+                                            System.out.println("Do you still want to assign (yes/no)");
+                                            confirmation = sc.nextLine();
                                             System.out.println("Do you still want to assign (yes/no)");
                                             confirmation = sc.nextLine();
                                         } while (confirmation.equalsIgnoreCase("yes"));
