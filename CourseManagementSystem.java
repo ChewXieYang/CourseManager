@@ -1,47 +1,144 @@
-// import java.util.*;
+// Part Done
+// -Admin can create students and lecturers.
+// -Admin can create courses and assign courses to lecturers. 
+// -Users can login and the system can recognize their user type.
+// -Students can self-register for courses in new trimesters. 
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CourseManagementSystem {
-    private int id;
-    private String name;
+    // private int id;
+    // private String name;
 
-    public CourseManagementSystem(int id, String name) {
+    // public CourseManagementSystem(int id, String name) {
+    // this.id = id;
+    // this.name = name;
+    // }
+
+}
+
+class Course { //Copy and paste it to Course.java
+    public String id;
+    public String name;
+
+    public Course(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    public String toString() {
+        return "CourseID: " + id + ", CourseName: " + name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+}
+
+class Student { // Can also copy and paste it to Student.java
+    public String id;
+    public String name;
+    public ArrayList<Course> Trimester1;
+    public ArrayList<Course> Trimester2;
+    public ArrayList<Course> Trimester3;
+
+    public Student(String id, String name,ArrayList<Course> Trimester1, ArrayList<Course> Trimester2, ArrayList<Course> Trimester3) {
+        this.id = id;
+        this.name = name;
+        this.Trimester1 = Trimester1;
+        this.Trimester2 = Trimester2;
+        this.Trimester3 = Trimester3;
+    }
+
+    public String toString() {
+        return "StudentID: " + id + ", StudentName: " + name + ", Trimester1: " + Trimester1 + ", Trimester2: " + Trimester2  + ", Trimester3: " + Trimester3;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public boolean contains(String SID) {
+        return false;
+    }
+
+    public void addCoursesToT1(Course course){
+        Trimester1.add(course);
+    }
+    public void addCoursesToT2(Course course){
+        Trimester2.add(course);
+    }
+    public void addCoursesToT3(Course course){
+        Trimester3.add(course);
+    }
+}
+
+class Lecturer { //Can also copy and paste it to Lecturer.java
+    public String id;
+    public String name;
+    public ArrayList<Course> courses;
+
+    public Lecturer(String id, String name, ArrayList<Course> courses) {
+        this.id = id;
+        this.name = name;
+        this.courses = courses;
+    }
+
+    public String toString() {
+        return "LecturerID: " + id + ", LecturerName: " + name + " , CoursesAssigned: " + courses;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public boolean contains(String LID) {
+        return false;
+    }
+
+    public void addCourses(Course course){
+        courses.add(course);
+    }
 }
 
 class TestSystem {
+
     public static void main(String[] args) {
 
-        ArrayList<String> CourseList = new ArrayList<>();
-        ArrayList<String> StudentList = new ArrayList<>();
-        ArrayList<String> LecturerList = new ArrayList<>();
-        ArrayList<String> CourseTrimesterI = new ArrayList<>();
-        ArrayList<String> CourseTrimesterII = new ArrayList<>();
-        ArrayList<String> CourseTrimesterIII = new ArrayList<>();
-        ArrayList<String> StudentCoListA = new ArrayList<>();
-        ArrayList<String> StudentCoListB = new ArrayList<>();
-        ArrayList<String> LeTeachList = new ArrayList<>();
+        ArrayList<Course> CourseList = new ArrayList<>();
+        ArrayList<Student> StudentList = new ArrayList<>();
+        ArrayList<Lecturer> LecturerList = new ArrayList<>();
 
+        int option;
         int profile = 0;
         String course;
-        int option;
-        String student;
-        String lecturer;
-        String courseID1;
-        String courseID2;
-        String courseID3;
+        String id;
+        String LecID;
+        String CourID;
+        String StuID;
+        String name;
+        String confirmation;
         boolean exitProgram = false;
-        Scanner sc = new Scanner(System.in);
 
-        StudentList.add("1211101453 Lee");
-        LecturerList.add("905477 Steven");
-        CourseList.add("CS101 Toolbox Theory"); // course A
-        CourseList.add("TCP2201 Programming"); // course B
-        LeTeachList.add("CS101 Toolbox Theory");
+        Scanner sc = new Scanner(System.in);
+        StudentList.add(new Student("1211101453", "Lee",new ArrayList<>(),new ArrayList<>(),new ArrayList<>()));
+        LecturerList.add(new Lecturer("905488", "Steven",new ArrayList<>()));
+        CourseList.add(new Course("C102","OOPDS"));
 
         System.out.println("Welcome to Course Manager");
         do {
@@ -63,56 +160,78 @@ class TestSystem {
                         if (password.equals("12345")) {
                             System.out.println("Welcome, Admin");
                             boolean exitAdminMenu = false;
-                            String confirmation;
                             do {
 
                                 System.out.println("Select OPTION");
                                 System.out.println("1.Add Courses");
                                 System.out.println("2.Add Student");
                                 System.out.println("3.Add Lecturer");
-                                System.out.println("4.Assign Courses");
+                                System.out.println("4.Assign Course");
                                 System.out.println("5.Logout");
                                 System.out.print("Enter your choice (1/2/3/4/5): ");
                                 option = sc.nextInt();
                                 sc.nextLine(); // Consume the newline
-
                                 switch (option) {
                                     case 1:
                                         do {
-                                            System.out.println("Please Enter Course ID and Name ");
-                                            course = sc.nextLine();
-                                            CourseList.add(course);
-                                            System.out.println(course + " has been successfully added");
-                                            System.out.println("Do you still want to add (yes/no)");
+                                            System.out.print("Please Enter Course ID: ");
+                                            CourID = sc.nextLine();
+                                            System.out.print("Please Enter Course Name: ");
+                                            name = sc.nextLine();
+                                            CourseList.add(new Course(CourID, name));
+                                            System.out.println("Successfully added " + CourID + " " + name);
+                                            for (Course list : CourseList) {
+                                                System.out.println(list.toString());
+                                            }
+                                            System.out.print("Do you still want to add (Y/N): ");
                                             confirmation = sc.nextLine();
-                                        } while (confirmation.equalsIgnoreCase("yes"));
+                                        } while (confirmation.equalsIgnoreCase("Y"));
                                         break;
                                     case 2:
                                         do {
-                                            System.out.println("Please Enter Student ID and Name ");
-                                            student = sc.nextLine();
-                                            StudentList.add(student);
-                                            System.out.println(student + " has been successfully added");
-                                            System.out.println("Do you still want to add (yes/no)");
+                                            System.out.print("Please Enter Student ID: ");
+                                            id = sc.nextLine();
+                                            System.out.print("Please Enter Student Name: ");
+                                            name = sc.nextLine();
+                                            System.out.println(id + " " + name + " has been successfully added");
+                                            StudentList.add(new Student(id, name,new ArrayList<>(),new ArrayList<>(),new ArrayList<>()));
+                                            for (Student list : StudentList) {
+                                                System.out.println(list.toString());
+                                            }
+                                            System.out.print("Do you still want to add (Y/N): ");
                                             confirmation = sc.nextLine();
-                                        } while (confirmation.equalsIgnoreCase("yes"));
+                                        } while (confirmation.equalsIgnoreCase("Y"));
                                         break;
                                     case 3:
                                         do {
-                                            System.out.println("Please Enter Lecturer ID and Name ");
-                                            lecturer = sc.nextLine();
-                                            LecturerList.add(lecturer);
-                                            System.out.println(lecturer + " has been successfully added");
-                                            System.out.println("Do you still want to add (yes/no)");
+                                            System.out.print("Please Enter Lecturer ID: ");
+                                            LecID = sc.nextLine();
+                                            System.out.print("Please Enter Lecturer Name: ");
+                                            name = sc.nextLine();
+                                            System.out.println(LecID + " " + name + " has been successfully added");
+                                            LecturerList.add(new Lecturer(LecID, name,new ArrayList<>()));
+                                            for (Lecturer list : LecturerList) {
+                                                System.out.println(list.toString());
+                                            }
+                                            System.out.print("Do you still want to add (Y/N): ");
                                             confirmation = sc.nextLine();
-                                        } while (confirmation.equalsIgnoreCase("yes"));
+                                        } while (confirmation.equalsIgnoreCase("Y"));
                                         break;
                                     case 4:
                                         do {
-                                            // ASSIGN COURSES TO LECTURER
-                                            System.out.println("Do you still want to assign (yes/no)");
+                                            System.out.print("Enter CoursesID: ");
+                                            CourID = sc.nextLine();
+                                            System.out.print("Enter LecturerID to assign to it: ");
+                                            LecID = sc.nextLine();
+                                            int Cindex = searchCourseIdIndex(CourseList,CourID);
+                                            int Lindex = searchLecturerIdIndex(LecturerList,LecID);
+                                            Course Course = CourseList.get(Cindex);
+                                            Lecturer Lecturer = LecturerList.get(Lindex);
+                                            Lecturer.addCourses(Course);
+                                            System.out.println(LecturerList.get(Lindex));
+                                            System.out.print("Do you still want to assign (Y/N): ");
                                             confirmation = sc.nextLine();
-                                        } while (confirmation.equalsIgnoreCase("yes"));
+                                        } while (confirmation.equalsIgnoreCase("Y"));
                                         break;
                                     case 5:
                                         exitAdminMenu = true;
@@ -127,15 +246,13 @@ class TestSystem {
                         break;
 
                     case 2: // STUDENT
-
+                        
                         System.out.print("Please enter you Student ID: ");
                         String SID = sc.nextLine();
                         boolean foundStudent = searchStudentID(StudentList, SID);
-                        
                         if (foundStudent) {
                             System.out.println("Welcome, Student " + SID);
                             boolean exitStudentMenu = false;
-                            String confirmation;
                             do {
 
                                 System.out.println("Select OPTION");
@@ -145,106 +262,101 @@ class TestSystem {
                                 System.out.println("4.Logout");
                                 System.out.print("Enter your choice (1/2/3/4): ");
                                 option = sc.nextInt();
+
                                 sc.nextLine();
+
                                 switch (option) {
-                                    case 1://VIEW ENROLLED COURSES
+                                    case 1:
                                         System.out.println("These are the courses you have enrolled for each Trimester");
-                                        System.out.println("Trimester I: " + CourseTrimesterI);
-                                        System.out.println("Trimester II: "+ CourseTrimesterII);
-                                        System.out.println("Trimester III: "+ CourseTrimesterIII);
+                                        System.out.println("Trimester I: ");
+                                        System.out.println("Trimester II: ");
+                                        System.out.println("Trimester III: ");
                                         break;
 
-                                    case 2://ENROLL COURSE
+                                    case 2:
+                                        System.out.println("Select trimester you want to enroll");
+                                        System.out.println("1. Trimester I: ");
+                                        System.out.println("2. Trimester II: ");
+                                        System.out.println("3. Trimester III: ");
+                                        System.out.println("4. Back");
+                                        System.out.print("Enter your choice (1/2/3/4): ");
+                                        boolean exitEnrollMenu = false;
                                         do{
+                                        option = sc.nextInt();
+                                        sc.nextLine(); // consume the newline
+                                                                       
+                                        switch(option){
+                                            case 1:
+                                                do {
+                                                System.out.print("Enter CoursesID that you want to enroll: ");
+                                                CourID = sc.nextLine();
+                                                StuID = SID;
+                                                int Cindex = searchCourseIdIndex(CourseList,CourID);
+                                                int Sindex = searchStudentIdIndex(StudentList,StuID);
+                                                Course Course = CourseList.get(Cindex);
+                                                Student Student = StudentList.get(Sindex);
+                                                Student.addCoursesToT1(Course);
+                                                System.out.println(StudentList.get(Sindex));
+                                                System.out.print("Do you still want to assign (Y/N): ");
+                                                confirmation = sc.nextLine();
+                                                } while (confirmation.equalsIgnoreCase("Y"));
+                                            break;
+                                            case 2:
+                                                do {
+                                                System.out.print("Enter CoursesID that you want to enroll: ");
+                                                CourID = sc.nextLine();
+                                                StuID = SID;
+                                                int Cindex = searchCourseIdIndex(CourseList,CourID);
+                                                int Sindex = searchStudentIdIndex(StudentList,StuID);
+                                                Course Course = CourseList.get(Cindex);
+                                                Student Student = StudentList.get(Sindex);
+                                                Student.addCoursesToT2(Course);
+                                                System.out.println(StudentList.get(Sindex));
+                                                System.out.print("Do you still want to assign (Y/N): ");
+                                                confirmation = sc.nextLine();
+                                                } while (confirmation.equalsIgnoreCase("Y"));
+                                                
+                                            break;
+                                            case 3:
+                                            do {
+                                                System.out.print("Enter CoursesID that you want to enroll: ");
+                                                CourID = sc.nextLine();
+                                                StuID = SID;
+                                                int Cindex = searchCourseIdIndex(CourseList,CourID);
+                                                int Sindex = searchStudentIdIndex(StudentList,StuID);
+                                                Course Course = CourseList.get(Cindex);
+                                                Student Student = StudentList.get(Sindex);
+                                                Student.addCoursesToT1(Course);
+                                                System.out.println(StudentList.get(Sindex));
+                                                System.out.print("Do you still want to assign (Y/N): ");
+                                                confirmation = sc.nextLine();
+                                                } while (confirmation.equalsIgnoreCase("Y"));
+                                            break;
+                                            case 4:
+                                                exitEnrollMenu = true;
+                                            default:
+                                                System.out.println("Invalid option, Please Select Again");
+                                        }
+                                        } while (!exitEnrollMenu);
+                                    break;
+                                    case 3:
                                         System.out.println("Select your trimester");
-                                        System.out.println("Trimester I = 1, Trimester II = 2, Trimester III = 3");
-                                        int trimester = sc.nextInt();
-                                        sc.nextLine();
-                                        System.out.println("Please key in course ID");                                         
-                                            switch(trimester){
-                                                case 1:
-                                                    courseID1 = sc.nextLine();
-                                                    CourseTrimesterI.add(courseID1);
-                                                    if (courseID1 == "CS101") 
-                                                        StudentCoListA.add(SID);
-                                                    else
-                                                        StudentCoListB.add(SID);
-                                                    System.out.println("You have enrolled for course: " + courseID1 + " in Trimester " + trimester);
-                                                    break;
-                                                case 2:
-                                                    courseID2 = sc.nextLine();
-                                                    CourseTrimesterII.add(courseID2);
-                                                    if (courseID2 == "CS101") 
-                                                        StudentCoListA.add(SID);
-                                                    else
-                                                        StudentCoListB.add(SID);
-                                                    System.out.println("You have enrolled for course: " + courseID2 + " in Trimester " + trimester);
-                                                    break;
-                                                case 3:
-                                                    courseID3 = sc.nextLine();
-                                                    CourseTrimesterIII.add(courseID3);
-                                                    if (courseID3 == "CS101") 
-                                                        StudentCoListA.add(SID);
-                                                    else
-                                                        StudentCoListB.add(SID);
-                                                    System.out.println("You have enrolled for course: " + courseID3 + " in Trimester " + trimester);
-                                                    break;
-                                            }
-                                        System.out.println("Would you like to enroll more courses? (yes/no)");
-                                        confirmation = sc.nextLine();
-                                        }while (confirmation.equalsIgnoreCase("yes"));
-                                        break;
-                                    case 3://DROPOUT COURSE
-                                        do{
-                                        System.out.println("Select your trimester");
-                                        System.out.println("Trimester I = 1, Trimester II = 2, Trimester III = 3");
-                                        int trimester = sc.nextInt();
-                                        sc.nextLine();
+                                        System.out.println("Trimester I = 1, Trimester II = 2, Trimester = III");
                                         System.out.println("Please key in course ID");
-                                        switch(trimester){
-                                                case 1:
-                                                    courseID1 = sc.nextLine();
-                                                    CourseTrimesterI.remove(courseID1);
-                                                    if (courseID1 == "CS101") 
-                                                        StudentCoListA.remove(SID);
-                                                    else
-                                                        StudentCoListB.remove(SID);
-                                                    System.out.println("You have dropped course: " + courseID1 + " in Trimester " + trimester);
-                                                    break;
-                                                case 2:
-                                                    courseID2 = sc.nextLine();
-                                                    CourseTrimesterII.remove(courseID2);
-                                                    if (courseID2 == "CS101") 
-                                                        StudentCoListA.remove(SID);
-                                                    else
-                                                        StudentCoListB.remove(SID);
-                                                    System.out.println("You have dropped course: " + courseID2 + " in Trimester " + trimester);
-                                                    break;
-                                                case 3:
-                                                    courseID3 = sc.nextLine();
-                                                    CourseTrimesterIII.remove(courseID3);
-                                                    if (courseID3 == "CS101") 
-                                                        StudentCoListA.remove(SID);
-                                                    else
-                                                        StudentCoListB.remove(SID);
-                                                    System.out.println("You have dropped course: " + courseID3 + " in Trimester " + trimester);
-                                                    break;
-                                            }
-                                        System.out.println("Would you like to drop more courses? (yes/no)");
-                                        confirmation = sc.nextLine();
-                                        }while (confirmation.equalsIgnoreCase("yes"));
+                                        course = sc.nextLine();
+                                        System.out.println("You have dropped out of course: " + course);
                                         break;
                                     case 4:
                                         exitStudentMenu = true;
                                         break;
                                     default:
                                         System.out.println("Invalid option");
-                                    }
-                                } while (!exitStudentMenu);
-                            } else
+                                        break;
+                                }
+                            } while (!exitStudentMenu);
+                        } else
                             System.out.println("ID not found, You are not registered as a student");
                         break;
-
                     case 3: // LECTURER
                         System.out.print("Please enter you Lecturer ID: ");
                         String LID = sc.nextLine();
@@ -264,27 +376,9 @@ class TestSystem {
                                 sc.nextLine();
 
                                 switch (option) {
-                                    case 1: // print the course teach
-                                        System.out.println("You have assigned the following class: ");
-                                        for (int i = 0; i < LeTeachList.size(); i++) {
-                                            System.out.print(LeTeachList.get(i) +", ");
-                                        }
+                                    case 1:
                                         break;
                                     case 2:
-                                        System.out.println("Type the course you want to check: ");
-                                        String checkCourse = sc.nextLine();
-                                        sc.nextLine();
-                                        System.out.println("The students in course: ");
-                                        if (checkCourse == "CS101") {  // decide course
-                                            for (int i = 0; i < StudentCoListA.size(); i++) {
-                                            System.out.println( (i+1) +".  " + StudentCoListA.get(i));
-                                            }
-                                        }
-                                        else {
-                                            for (int i = 0; i < StudentCoListB.size(); i++) {
-                                            System.out.println( (i+1) +".  " + StudentCoListB.get(i));
-                                            }
-                                        }
                                         break;
                                     case 3:
                                         exitLecturerMenu = true;
@@ -302,8 +396,6 @@ class TestSystem {
                         break;
                     default:
                         System.out.println("Invalid profile, Please Select Again");
-                        break;
-
                 }
             } else {
                 System.out.println("Please enter an integer");
@@ -313,22 +405,51 @@ class TestSystem {
 
     }
 
-    // Method to identify Student
-    public static boolean searchStudentID(ArrayList<String> StudentList, String SID) {
-        for (String StudentID : StudentList) {
-            if (StudentID.contains(SID))
+    // To identify Student
+    public static boolean searchStudentID(ArrayList<Student> StudentList, String SID) {
+        for (Student StudentID : StudentList) {
+            if (StudentID.getId().equals(SID))
                 return true;
         }
         return false;
     }
 
-    // Method to identify Lecturer
-    public static boolean searchLecturerID(ArrayList<String> LecturerList, String LID) {
-        for (String LecturerID : LecturerList) {
-            if (LecturerID.contains(LID))
+    // To identify Lecturer
+    public static boolean searchLecturerID(ArrayList<Lecturer> LecturerList, String LID) {
+        for (Lecturer LecturerID : LecturerList) {
+            if (LecturerID.getId().equals(LID))
                 return true;
         }
         return false;
     }
 
+    // Get CourseID index
+    public static int searchCourseIdIndex(ArrayList<Course> CourseList, String CourID) {
+    for (int i = 0; i < CourseList.size(); i++) {
+        if (CourseList.get(i).getId().equals(CourID)) {
+            return i; // Return the index when the course ID is found
+        }
+    }
+    return -1; // Return -1 if the course ID is not found in the list
+    }
+
+    // Get LecturerID index
+    public static int searchLecturerIdIndex(ArrayList<Lecturer> LecturerList, String LecID) {
+    for (int i = 0; i < LecturerList.size(); i++) {
+        if (LecturerList.get(i).getId().equals(LecID)) {
+            return i; // Return the index when the course ID is found
+        }
+    }
+    return -1; // Return -1 if the lecturer ID is not found in the list
+    }
+
+    // Get StudentID index
+    public static int searchStudentIdIndex(ArrayList<Student> StudentList, String LecID) {
+    for (int i = 0; i < StudentList.size(); i++) {
+        if (StudentList.get(i).getId().equals(LecID)) {
+            return i; // Return the index when the course ID is found
+        }
+    }
+    return -1; // Return -1 if the student ID is not found in the list
+    }
 }
