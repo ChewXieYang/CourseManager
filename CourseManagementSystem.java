@@ -5,12 +5,24 @@ import java.util.Scanner;
 public class CourseManagementSystem {
     private int id;
     private String name;
+    private String prerequisite;
 
     public CourseManagementSystem(int id, String name) {
         this.id = id;
         this.name = name;
+        this.prerequisite = prerequisite;
     }
 
+}
+
+private static String getPrerequisite(String courseID, ArrayList<String> courseList) {
+    for (String courseDetails : courseList) {
+        String[] courseInfo = courseDetails.split(" ");
+        if (courseInfo[0].equals(courseID) && courseInfo.length > 2) {
+            return courseInfo[2];
+        }
+    }
+    return "";
 }
 
 class TestSystem {
@@ -65,7 +77,6 @@ class TestSystem {
                             boolean exitAdminMenu = false;
                             String confirmation;
                             do {
-
                                 System.out.println("Select OPTION");
                                 System.out.println("1.Add Courses");
                                 System.out.println("2.Add Student");
@@ -81,7 +92,13 @@ class TestSystem {
                                         do {
                                             System.out.println("Please Enter Course ID and Name ");
                                             course = sc.nextLine();
-                                            CourseList.add(course);
+                                            String[] courseInfo = courseDetails.split(" ");
+        
+                                            String courseID = courseInfo[0];
+                                            String courseName = courseInfo[1];
+                                            String prerequisite = courseInfo.length > 2 ? courseInfo[2] : "";
+                                    
+                                            CourseList.add(courseDetails);
                                             System.out.println(course + " has been successfully added");
                                             System.out.println("Do you still want to add (yes/no)");
                                             confirmation = sc.nextLine();
@@ -145,7 +162,6 @@ class TestSystem {
                             boolean exitStudentMenu = false;
                             String confirmation;
                             do {
-
                                 System.out.println("Select OPTION");
                                 System.out.println("1.View Courses");
                                 System.out.println("2.Enroll Courses");
@@ -168,7 +184,13 @@ class TestSystem {
                                         System.out.println("Trimester I = 1, Trimester II = 2, Trimester III = 3");
                                         int trimester = sc.nextInt();
                                         sc.nextLine();
-                                        System.out.println("Please key in course ID");                                         
+                                        System.out.println("Please key in course ID");
+                                        String courseID = sc.nextLine();
+                                        String prerequisite = getPrerequisite(courseID, CourseList);
+                                        if (!prerequisite.isEmpty() && !StudentCoListA.contains(prerequisite)) {
+                                            System.out.println("You need to complete the prerequisite course (" + prerequisite + ") first.");
+                                            break;
+                                        }                                           
                                             switch(trimester){
                                                 case 1:
                                                     courseID1 = sc.nextLine();
